@@ -7,12 +7,14 @@ var gridCells = ['A1', 'A2', 'A3', 'A4', 'A5', 'A6', 'A7', 'A8', 'B1', 'B2', 'B3
 var targetsPlayer1 = []; // moves made by player1
 var targetsPlayer2 = [];
 
-function createCells() {
+createCells(1); // send player 1
+createCells(2); // send player 2
+function createCells(player) {
   var gridCellIndex = 0; // initialize index 0
   for (var j = 1; j < 9; j++) {
     for (var i = 1; i < 9; i++) {
       var cell = document.createElement('div'); //create div
-      var rowId = "player1row"+j;
+      var rowId = "player"+player+"row"+j;
       cell.classList.add('cell');// add class cell
       var parentElRow = document.getElementById(rowId)//get parent div
       var createdId = gridCells[gridCellIndex];
@@ -45,6 +47,7 @@ function store(cell) { // argument passed is the cell clicked  on by player
   // console.log(targetId);
   // console.log(targetsPlayer2);
 };
+
 //target parameter = 'A3'
 function checkHitOrMiss(target, elTarget) {
   console.log("here is the loop of the opponent ships array");
@@ -58,21 +61,31 @@ function checkHitOrMiss(target, elTarget) {
     var opponentCell = gridCells[shipsPlayer2[shipsIndex]]; // index converted to cell value
     console.log(opponentCell);
     if (target === opponentCell) {
-        console.log("it's a hit");
+        //call hit function
+        console.log("it's a hit go to hit function....");
+        hit(elTarget);
+        return;
     //     // turn the element with ID of target
-    //     elTarget.style.backgroundColor = 'red'; //it's a hit
-    } else {
-        console.log("it's a miss");
-        // elTarget.style.backgroundColor = 'lightblue'; // it's a miss
+
     }
-  };
+
+
+  }
+  console.log("it's a miss go to miss function...");
+  miss(elTarget);
 };
-// function hit() {
-//
-// }
-// function miss() {
-//
-// }
+function hit(cell) {
+  console.log("you reached the hit function");
+  console.log(cell);
+  cell.style.backgroundColor = 'red'; //it's a hit
+
+};
+function miss(cell) {
+  console.log("you reached the miss function");
+  console.log(cell);
+  cell.style.backgroundColor = 'lightblue'; // it's a miss
+
+};
 
 //add elements of grid and add Event listener
 

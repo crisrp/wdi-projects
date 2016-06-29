@@ -56,6 +56,9 @@ body {
   /*background-color: lightgreen;*/
   margin: 0;
 }
+#player1status {
+  
+}
 .ships {
   margin-top: 5%;
   height: 12%;
