@@ -6,85 +6,64 @@
     <title>Battleship</title>
   </head>
   <body>
-    <header><h1>Battleship</h1></header>
+    <header><h1>BATTLESHIP</h1></header>
+    <div class = "turnAlert"><h2>Player 1, your turn!</h2></div>
+
+
     <div class = "container" id = "player1container"><h1>PLAYER 1</h1>
+      <div class = "status" id = "player1status"><h2>HIT</h2></div>
       <section class = "target" id = "player1target">
-        <div class = "row" id = "player1row1" >
-        </div>
-        <div class = "row" id = "player1row2">
-          <!-- <div class = "cell" id = "P1B1"></div>
-          <div class = "cell" id = "P1B2"></div>
-          <div class = "cell" id = "P1B3"></div>
-          <div class = "cell" id = "P1B4"></div>
-          <div class = "cell" id = "P1B5"></div>
-          <div class = "cell" id = "P1B6"></div>
-          <div class = "cell" id = "P1B7"></div>
-          <div class = "cell" id = "P1B8"></div> -->
-        </div>
-        <div class = "row" id = "player1row3">
-          <!-- <div class = "cell" id = "P1C1"></div>
-          <div class = "cell" id = "P1C2"></div>
-          <div class = "cell" id = "P1C3"></div>
-          <div class = "cell" id = "P1C4"></div>
-          <div class = "cell" id = "P1C5"></div>
-          <div class = "cell" id = "P1C6"></div>
-          <div class = "cell" id = "P1C7"></div>
-          <div class = "cell" id = "P1C8"></div> -->
-        </div>
-        <div class = "row" id = "player1row4">
-          <!-- <div class = "cell" id = "P1D1"></div>
-          <div class = "cell" id = "P1D2"></div>
-          <div class = "cell" id = "P1D3"></div>
-          <div class = "cell" id = "P1D4"></div>
-          <div class = "cell" id = "P1D5"></div>
-          <div class = "cell" id = "P1D6"></div>
-          <div class = "cell" id = "P1D7"></div>
-          <div class = "cell" id = "P1D8"></div> -->
-        </div>
-        <div class = "row" id = "player1row5">
-          <!-- <div class = "cell" id = "P1D1"></div>
-          <div class = "cell" id = "P1D2"></div>
-          <div class = "cell" id = "P1D3"></div>
-          <div class = "cell" id = "P1D4"></div>
-          <div class = "cell" id = "P1D5"></div>
-          <div class = "cell" id = "P1D6"></div>
-          <div class = "cell" id = "P1D7"></div>
-          <div class = "cell" id = "P1D8"></div> -->
-        </div>
-          <div class = "row" id = "player1row6">
-            <!-- <div class = "cell" id = "P1E1"></div>
-            <div class = "cell" id = "P1E2"></div>
-            <div class = "cell" id = "P1E3"></div>
-            <div class = "cell" id = "P1E4"></div>
-            <div class = "cell" id = "P1E5"></div>
-            <div class = "cell" id = "P1E6"></div>
-            <div class = "cell" id = "P1E7"></div>
-            <div class = "cell" id = "P1E8"></div> -->
-          </div>
-          <div class = "row" id = "player1row7">
-            <!-- <div class = "cell" id = "P1F1"></div>
-            <div class = "cell" id = "P1F2"></div>
-            <div class = "cell" id = "P1F3"></div>
-            <div class = "cell" id = "P1F4"></div>
-            <div class = "cell" id = "P1F5"></div>
-            <div class = "cell" id = "P1F6"></div>
-            <div class = "cell" id = "P1F7"></div>
-            <div class = "cell" id = "P1F8"></div> -->
-          </div>
-          <div class = "row" id = "player1row8">
-            <!-- <div class = "cell" id = "P1G1"></div>
-            <div class = "cell" id = "P1G2"></div>
-            <div class = "cell" id = "P1G3"></div>
-            <div class = "cell" id = "P1G4"></div>
-            <div class = "cell" id = "P1G5"></div>
-            <div class = "cell" id = "P1G6"></div>
-            <div class = "cell" id = "P1G7"></div>
-            <div class = "cell" id = "P1G8"></div> -->
-          </div>
+        <div class = "row" id = "player1row1" ></div>
+        <div class = "row" id = "player1row2"></div>
+        <div class = "row" id = "player1row3"></div>
+        <div class = "row" id = "player1row4"></div>
+        <div class = "row" id = "player1row5"></div>
+        <div class = "row" id = "player1row6"></div>
+        <div class = "row" id = "player1row7"></div>
+        <div class = "row" id = "player1row8"></div>
+
       </section>
-        <!--this will update through DOM manipulation -->
-      <!-- <div class = "status" id = "player1status"><h2></h2></div> -->
-      <!-- <div class = "ships">
+
+
+
+        <div class = "ships" id = "p1-ship-containers">
+          <div class = "battleship">
+            <div class = "ship-part"> </div>
+            <div class = "ship-part"> </div>
+            <div class = "ship-part"> </div>
+            <div class = "ship-part"> </div>
+          </div>
+          <div class = "submarine">
+            <div class = "ship-part"> </div>
+            <div class = "ship-part"> </div>
+            <div class = "ship-part"> </div>
+          </div>
+          <div class = "destroyer">
+            <div class = "ship-part"> </div>
+            <div class = "ship-part"> </div>
+          </div>
+        </div>
+
+    </div>
+
+
+
+
+    <!--********PLAYER 2*******---------->
+    <div class = "container" id = "player2container"><h1>PLAYER 2</h1>
+      <div class = "status" id = "player2status"><h2>HIT</h2></div>
+      <section class = "target" id = "player2target">
+        <div class = "row" id = "player2row1"></div>
+        <div class = "row" id = "player2row2"></div>
+        <div class = "row" id = "player2row3"></div>
+        <div class = "row" id = "player2row4"></div>
+        <div class = "row" id = "player2row5"></div>
+        <div class = "row" id = "player2row6"></div>
+        <div class = "row" id = "player2row7"></div>
+        <div class = "row" id = "player2row8"></div>
+      </section>
+
+      <div class = "ships" id = "p2-ship-containers">
         <div class = "battleship">
           <div class = "ship-part"> </div>
           <div class = "ship-part"> </div>
@@ -100,95 +79,8 @@
           <div class = "ship-part"> </div>
           <div class = "ship-part"> </div>
         </div>
-      </div> -->
-    </div>
+      </div>
 
-
-    <div class = "container" id = "player2container"><h1>PLAYER 2</h1>
-      <section class = "target" id = "player2target">
-        <div class = "row" id = "player2row1">
-          <!-- <div class = "cell"></div>
-          <div class = "cell"></div>
-          <div class = "cell"></div>
-          <div class = "cell"></div>
-          <div class = "cell"></div>
-          <div class = "cell"></div>
-          <div class = "cell"></div>
-          <div class = "cell"></div> -->
-        </div>
-        <div class = "row" id = "player2row2">
-          <!-- <div class = "cell"></div>
-          <div class = "cell"></div>
-          <div class = "cell"></div>
-          <div class = "cell"></div>
-          <div class = "cell"></div>
-          <div class = "cell"></div>
-          <div class = "cell"></div>
-          <div class = "cell"></div> -->
-        </div>
-        <div class = "row" id = "player2row3">
-          <!-- <div class = "cell"></div>
-          <div class = "cell"></div>
-          <div class = "cell"></div>
-          <div class = "cell"></div>
-          <div class = "cell"></div>
-          <div class = "cell"></div>
-          <div class = "cell"></div>
-          <div class = "cell"></div> -->
-        </div>
-        <div class = "row" id = "player2row4">
-          <!-- <div class = "cell"></div>
-          <div class = "cell"></div>
-          <div class = "cell"></div>
-          <div class = "cell"></div>
-          <div class = "cell"></div>
-          <div class = "cell"></div>
-          <div class = "cell"></div>
-          <div class = "cell"></div> -->
-        </div>
-        <div class = "row" id = "player2row5">
-          <!-- <div class = "cell"></div>
-          <div class = "cell"></div>
-          <div class = "cell"></div>
-          <div class = "cell"></div>
-          <div class = "cell"></div>
-          <div class = "cell"></div>
-          <div class = "cell"></div>
-          <div class = "cell"></div> -->
-        </div>
-        <div class = "row" id = "player2row6">
-          <!-- <div class = "cell"></div>
-          <div class = "cell"></div>
-          <div class = "cell"></div>
-          <div class = "cell"></div>
-          <div class = "cell"></div>
-          <div class = "cell"></div>
-          <div class = "cell"></div>
-          <div class = "cell"></div> -->
-        </div>
-        <div class = "row" id = "player2row7">
-          <!-- <div class = "cell"></div>
-          <div class = "cell"></div>
-          <div class = "cell"></div>
-          <div class = "cell"></div>
-          <div class = "cell"></div>
-          <div class = "cell"></div>
-          <div class = "cell"></div>
-          <div class = "cell"></div> -->
-        </div>
-        <div class = "row" id = "player2row8">
-          <!-- <div class = "cell"></div>
-          <div class = "cell"></div>
-          <div class = "cell"></div>
-          <div class = "cell"></div>
-          <div class = "cell"></div>
-          <div class = "cell"></div>
-          <div class = "cell"></div>
-          <div class = "cell"></div> -->
-        </div>
-      </section>
-      <!--this will update through DOM manipulation -->
-      <!-- <div class = "status" id = "player2status"><h2>It's a HIT!</h2></div> -->
     </div>
 
 
