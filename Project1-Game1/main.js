@@ -1,13 +1,23 @@
 /*Testing hardcoding ship positions*/
 alert("Starting Game, go Player 1");
 
-var shipsPlayer1 = [9,10,11,12,21,29,37,50,51]; // each index references gridCells array
-var shipsPlayer2 = [2,3,15,23,31,58,59,60,61];
+ // each index references gridCells array
+
 var gridCells = ['A1', 'A2', 'A3', 'A4', 'A5', 'A6', 'A7', 'A8', 'B1', 'B2', 'B3', 'B4', 'B5', 'B6', 'B7', 'B8', 'C1', 'C2','C3','C4', 'C5', 'C6', 'C7', 'C8', 'D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'D7', 'D8', 'E1', 'E2', 'E3', 'E4', 'E5', 'E6', 'E7', 'E8', 'F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'F8', 'G1', 'G2', 'G3', 'G4', 'G5', 'G6', 'G7', 'G8', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'H7', 'H8'];
 var p1score = 0;
 var p2score = 0;
-var players = [ {id:1},{ id:2} ];
+var players = [
+  {
+    id:1,
+    shipLocations: [9,10,11,12,21,29,37,50,51],
+  },
+  {
+    id:2,
+    shipLocations: [2,3,15,23,31,58,59,60,61],
+  }
+];
 var currentPlayer = players[0].id; //updated in nextplayer function
+
 // populate the cells with event listeners for both players
 createCells(players[0].id); // send player 1
 createCells(players[1].id); // send player 2
@@ -51,14 +61,12 @@ function store() { // argument passed is the cell clicked  on by player
 function checkHitOrMiss(targetCell, elementId, elTarget) {
   console.log("here is the loop of the opponent ships array");
   console.log("This is the player's clicked cell id :::: " + elementId );
-
-  //start Checking the player 2 ships
   // if target = a cell in player 2 ships - it's a hit
   if (currentPlayer === 1) {
-    var opponentShips = shipsPlayer2;
+    var opponentShips = players[1].shipLocations;
     console.log(opponentShips)
   } else if (currentPlayer === 2){
-    opponentShips = shipsPlayer1;
+    opponentShips = players[1].shipLocations;
     console.log(opponentShips);
   }
 
@@ -136,6 +144,13 @@ function nextPlayer(){
   }
 };
 function gameOver(winner) {
+  if (winner === 1) {
+    var p1win = document.querySelector('#p1win');
+    p1win.style.color = 'white';
+  } else {
+    var p2win = document.querySelector('#p2win');
+    p2win.style.color = "white";
+  }
   alert("GameOver Player"+ winner + " wins!");
 
 };
