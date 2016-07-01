@@ -28,7 +28,7 @@ header h1 {
 
 }
 /*****TURNS AND SCORE******************/
-.turnAlertBox {
+#turnAlertBox {
   border-bottom: 2px solid white;
   height: auto;
   position: absolute;
@@ -116,19 +116,3 @@ h1, h2, h3 {
   background-color: black;
   margin: 5px;
 }
-
-
-
-
-/***********/
-/*footer {
-  position: absolute;
-  background-color: lightgray;
-  border: 1px solid black;
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  height: 10%;
-  width: 100%;
-  overflow:hidden;
-}*/

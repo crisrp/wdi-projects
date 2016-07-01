@@ -1,5 +1,4 @@
 /*Testing hardcoding ship positions*/
-alert("Starting Game, go Player 1");
 
  /* using this array to keep the cell names for an 8x8 grid, these cell names are referenced in other places in the program*/
 
@@ -7,6 +6,7 @@ var gridCells = ['A1', 'A2', 'A3', 'A4', 'A5', 'A6', 'A7', 'A8', 'B1', 'B2', 'B3
 //intialize variable for score
 var p1score = 0;
 var p2score = 0;
+
 // array of objects for players, later used to determine the current player in a nextPlayer fxn
 var players = [
   {
@@ -18,10 +18,17 @@ var players = [
     shipLocations: [2,3,15,23,31,58,59,60,61],
   }
 ];
+
 var currentPlayer = players[0].id; //updated in nextplayer function
 
-
-// populate the cellson the page with event listeners for both players
+// set default styling for HIT or MISS status
+player1status.innerHTML = '<h2>_</h2>';
+// player1status.style.backgroundColor = 'orange';
+player1status.color = 'orange';
+player2status.innerHTML = '<h2>_</h2>';
+// player2status.style.backgroundColor = 'white';
+player2status.color = 'white';
+// populate the cells on the page with event listeners for both players
 createCells(players[0].id); // send player 1
 createCells(players[1].id); // send player 2
 
@@ -36,120 +43,111 @@ function createCells(player) {
       cell.classList.add('cell');// add class cell to each div 'cell'
       var parentElRow = document.getElementById(rowId)// get parent div (row) where new div (cell) will be appended as a child
       var createdId = "p"+player + gridCells[gridCellIndex]; // creating a unique id for each new cell
-
-      console.log(createdId);
-
       cell.setAttribute("id",createdId);
       var cell = parentElRow.appendChild(cell);
-    
-      var cellCreated = document.getElementById(createdId);
+      var cellCreated = document.getElementById(createdId); // the new cell has a unique id
       cellCreated.addEventListener('click', store);
-      console.log(cell);
       gridCellIndex ++;
     };
   };
 };
 //
-// this function stores and sends the mouse event information to other functions
-//
+function checkInput(idString) {
+  if (currentPlayer === 1 && idString[1] === 2) {
+    alert("You clicked your opponent's target grid. Try again.");
+    return false;
+  } else if (currentPlayer === 2 && idString[1] === 1) {
+    alert("You clicked your opponent's target grid. Try again.");
+    return false;
+  } else {
+    return true;
+  }
+}
+// fxn stores and sends the mouse event information to other functions
 function store() { // argument passed is the cell clicked  on by player
-  console.log("called store function. Here I am!");
   var idString = event.srcElement.id;
-  var targetCell = idString[2] + idString[3];
-  var elTarget = event.srcElement;
-  console.log(elTarget);
-  checkHitOrMiss(targetCell, idString, elTarget);
-  this.removeEventListener('click',store); // remove the listener
-
-  console.log(idString);
+  var valid = checkInput(idString);
+  if (valid === false){
+      return;
+  }
+  player1status.innerHTML = '<h2>_</h2>';
+  player2status.innerHTML = '<h2>_</h2>';
+  var targetCell = idString[2] + idString[3]; // getting the cell name of the clicked cell
+  var elTarget = event.srcElement; // getting the element that was clicked
+  checkHitOrMiss(targetCell, idString, elTarget); // send mouse click info to check hit or miss
+  this.removeEventListener('click',store); // remove the listener , disable for future clicks
 };
 
-//target parameter = 'A3'
+// fxn does one thing if the current player is 1 or 2
 function checkHitOrMiss(targetCell, elementId, elTarget) {
-  console.log("here is the loop of the opponent ships array");
-  console.log("This is the player's clicked cell id :::: " + elementId );
-  // if target = a cell in player 2 ships - it's a hit
   if (currentPlayer === 1) {
     var opponentShips = players[1].shipLocations;
-    console.log(opponentShips)
   } else if (currentPlayer === 2){
     opponentShips = players[1].shipLocations;
-    console.log(opponentShips);
   }
 
+  // check against opponent ship locations
   for (var shipsIndex = 0; shipsIndex < 9; shipsIndex ++ ) {
     var opponentCell = gridCells[opponentShips[shipsIndex]]; // index converted to cell value
-    console.log(opponentCell);
     if (targetCell === opponentCell) {
-        //call hit function
-        console.log("it's a hit go to hit function....");
         hit(elTarget);
         return;
     }
   }
-  console.log("it's a miss go to miss function...");
   miss(elTarget);
 };
 //
 function hit(elTarget) {
-  console.log("you reached the hit function");
-  console.log(elTarget);
-  console.log("current player in hit function is " + currentPlayer);
   elTarget.style.backgroundColor = 'red'; //it's a hit
   if (currentPlayer == 1) {
-    console.log("YOU ENTERED THE NESTED IF OF HIT FOR PLAYER 1")
-    document.querySelector('#player1status').innerHTML = '<h2>HIT!</h2>';
+    player1status.innerHTML = '<h2>HIT!</h2>';
     p1score ++;
-    //find the ships cell below opponent p2 grid and style bg red
-    // ****code here *****
+
     if (p1score === 9) { // check if game is over
       gameOver(1);
     }
   } else if (currentPlayer == 2) {
-    console.log("YOU ENTERED THE ELSE IF OF HIT FOR PLAYER 2");
-    document.querySelector('#player2status').innerHTML = '<h2>HIT!</h2>';
+    player2status.innerHTML = '<h2>HIT!</h2>';
     p2score ++;
     if (p2score === 9) { // check if game is over
       gameOver(2);
     }
-    //find the ships cell below opponent p1 grid and style bg red
-    // ****code here *****
   }
   nextPlayer();
 };
 //
 function miss(elTarget) {
-  console.log("you reached the miss function");
-  console.log(elTarget);
+
   elTarget.style.backgroundColor = 'black'; // it's a miss
   if (currentPlayer == 1) {
-    console.log("CURRENT PLAYER IS 1 and p1 status should be MISS");
-    document.querySelector('#player1status').innerHTML = '<h2>MISS!</h2>';
-    //find the ships cell below opponent p2 grid and style bg red
-    // ****code here *****
+    player1status.innerHTML = '<h2>MISS!</h2>';
+
   } else if (currentPlayer == 2) {
-    document.querySelector('#player2status').innerHTML = '<h2>MISS!</h2>';
-    //find the ships cell below opponent p1 grid and style bg red
-    // ****code here *****
+    player2status.innerHTML = '<h2>MISS!</h2>';
+
   }
   nextPlayer();
 };
 //
 function nextPlayer(){
-  var p2header = document.querySelector('#player2container');
-  var p1header = document.querySelector('#player1container');
+
   players.unshift(players.pop()); // swap player 1 for player 2
   currentPlayer = players[0].id; // at position players index 0
+
   if (currentPlayer === 1) {
-    console.log(" current player is 1"); // Testing
-    p2header.style.backgroundColor = 'white';
-    p1header.style.backgroundColor = 'orange';
+    turnAlertBox.innerHTML = '<h2>Player 1, your turn</h2>';
+    player2container.style.backgroundColor = 'white';
+
+    player1container.style.backgroundColor = 'orange';
   } else if (currentPlayer === 2) {
-    console.log("current player is 2"); // Testing
-    p1header.style.backgroundColor = 'white';
-    p2header.style.backgroundColor = 'orange';
+
+    turnAlertBox.innerHTML = '<h2>Player 2, your turn</h2>';
+    player1container.style.backgroundColor = 'white';
+
+    player2container.style.backgroundColor = 'orange';
   }
 };
+
 function gameOver(winner) {
   if (winner === 1) {
     var p1win = document.querySelector('#p1win');
