@@ -1,4 +1,4 @@
-## Battleship
+## Battleship --Notes--
 1. Set the grid
   - create an object called grid with cells A-G, 1-8
   - create 2 instances of the object, 1 for each player
